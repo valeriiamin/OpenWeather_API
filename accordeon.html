@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Accordeon</title>
+        <style>
+            .accordeon {
+                border: 2px dashed rgb(233, 233, 233);
+                padding: 20px;
+                display: flex;
+                
+                flex-basis: 40%;
+                transition: 0.4s;
+            
+            }
+
+            .table-row{
+                display: flex;
+                flex-direction: row;
+                flex-basis: 100%;
+                align-items: center;
+                padding: 5px;
+            }
+
+            .active, .accordeon:hover{
+                background-color: aliceblue;
+            }
+
+                  
+            .content {
+                display: flex;
+                flex-direction: column;
+                max-height: 0;
+                overflow: hidden;
+                transition: 0.3s ease-in-out;
+                
+                
+            }
+
+            .accordeon:after{
+                content: '🔻';
+                
+                font-size: 10px;
+                display: flex;
+                align-items: center;
+            }
+
+            .active:after{
+                content: '🔺';
+            }
+
+            .content-row {
+                display: flex;
+                flex-direction: row;
+                flex-basis: 40%;
+                align-items: center;
+                padding: 5px;
+            }
+
+            .weather{
+                display: flex;
+                flex-direction: column;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="accordeon">
+            <div class="table-row">
+                <div class="table-row name">Geoposition</div>
+            <div class="table-row weather">
+                <span class="weather-temp">4°</span>
+                <span class="weather-desc">overcast clouds</span>
+            </div>
+            <div class="table-row icon">img</div>
+            </div>
+            
+        </div>
+        <div class="content">
+            <div class="content-row day">
+                <div class="content-row name">Monday</div>
+                <div class="content-row weather">
+                    <span class="weather-temp">4°</span>
+                    <span class="weather-desc">overcast clouds</span>
+                </div>
+                <div class="content-row icon">icon</div>
+            </div>
+            <div class="content-row day">
+                <div class="content-row name">Thirthday</div>
+                <div class="content-row weather">
+                    <span class="weather-temp">4°</span>
+                    <span class="weather-desc">overcast clouds</span>
+                </div>
+                <div class="content-row icon">icon</div>
+            </div>
+            <div class="content-row day">
+                <div class="content-row name">Wednesday</div>
+                <div class="content-row weather">
+                    <span class="weather-temp">4°</span>
+                    <span class="weather-desc">overcast clouds</span>
+                </div>
+                <div class="content-row icon">icon</div>
+            </div>
+            <div class="content-row day">
+                <div class="content-row name">Tuesday</div>
+                <div class="content-row weather">
+                    <span class="weather-temp">4°</span>
+                    <span class="weather-desc">overcast clouds</span>
+                </div>
+                <div class="content-row icon">icon</div>
+            </div>
+            <div class="content-row day">
+                <div class="content-row name">Friday</div>
+                <div class="content-row weather">
+                    <span class="weather-temp">4°</span>
+                    <span class="weather-desc">overcast clouds</span>
+                </div>
+                <div class="content-row icon">icon</div>
+            </div>
+            <div class="content-row day">
+                <div class="content-row name">Saturday</div>
+                <div class="content-row weather">
+                    <span class="weather-temp">4°</span>
+                    <span class="weather-desc">overcast clouds</span>
+                </div>
+                <div class="content-row icon">icon</div>
+            </div>
+            <div class="content-row day">
+                <div class="content-row name">Sunday</div>
+                <div class="content-row weather">
+                    <span class="weather-temp">4°</span>
+                    <span class="weather-desc">overcast clouds</span>
+                </div>
+                <div class="content-row icon">icon</div>
+            </div>
+        </div>
+        <div class="accordeon">
+            <div class="table-row name">London</div>
+            <div class="table-row weather">
+                <span class="weather-temp">4°</span>
+                <span class="weather-desc">overcast clouds</span>
+            </div>
+            <div class="table-row icon">img</div>
+        </div>
+        <div class="content">
+            <div class="content-row">
+                <div class="content-row name">Monday</div>
+                <div class="content-row weather">
+                    <span class="weather-temp">5°</span>
+                    <span class="weather-desc">overcast clouds</span>
+                </div>
+                <div class="content-row icon">icon</div>
+            </div>
+            <div class="content-row">
+                <div class="content-row name">Thirthday</div>
+                <div class="content-row weather">
+                    <span class="weather-temp">5°</span>
+                    <span class="weather-desc">overcast clouds</span>
+                </div>
+                <div class="content-row icon">icon</div>
+            </div>
+            <div class="content-row">
+                <div class="content-row name">Wednesday</div>
+                <div class="content-row weather">
+                    <span class="weather-temp">5°</span>
+                    <span class="weather-desc">overcast clouds</span>
+                </div>
+                <div class="content-row icon">icon</div>
+            </div>
+            <div class="content-row">
+                <div class="content-row name">Tuesday</div>
+                <div class="content-row weather">
+                    <span class="weather-temp">5°</span>
+                    <span class="weather-desc">overcast clouds</span>
+                </div>
+                <div class="content-row icon">icon</div>
+            </div>
+            <div class="content-row">
+                <div class="content-row name">Friday</div>
+                <div class="content-row weather">
+                    <span class="weather-temp">5°</span>
+                    <span class="weather-desc">overcast clouds</span>
+                </div>
+                <div class="content-row icon">icon</div>
+            </div>
+            <div class="content-row">
+                <div class="content-row name">Saturday</div>
+                <div class="content-row weather">
+                    <span class="weather-temp">5°</span>
+                    <span class="weather-desc">overcast clouds</span>
+                </div>
+                <div class="content-row icon">icon</div>
+            </div>
+            <div class="content-row">
+                <div class="content-row name">Sunday</div>
+                <div class="content-row weather">
+                    <span class="weather-temp">5°</span>
+                    <span class="weather-desc">overcast clouds</span>
+                </div>
+                <div class="content-row icon">icon</div>
+            </div>
+        </div>
+        <div class="accordeon">
+            <div class="table-row name">Kyiv</div>
+            <div class="table-row weather">
+                <span class="weather-temp">4°</span>
+                <span class="weather-desc">overcast clouds</span>
+            </div>
+            <div class="table-row icon">img</div>
+        </div>
+        <div class="content">
+            <div class="content-row day">
+                <div class="content-row name">Monday</div>
+                <div class="content-row weather">
+                    <span class="weather-temp">9°</span>
+                    <span class="weather-desc">overcast clouds</span>
+                </div>
+                <div class="content-row icon">icon</div>
+            </div>
+            <div class="content-row day">
+                <div class="content-row name">Thirthday</div>
+                <div class="content-row weather">
+                    <span class="weather-temp">9°</span>
+                    <span class="weather-desc">overcast clouds</span>
+                </div>
+                <div class="content-row icon">icon</div>
+            </div>
+            <div class="content-row day">
+                <div class="content-row name">Wednesday</div>
+                <div class="content-row weather">
+                    <span class="weather-temp">9°</span>
+                    <span class="weather-desc">overcast clouds</span>
+                </div>
+                <div class="content-row icon">icon</div>
+            </div>
+            <div class="content-row day">
+                <div class="content-row name">Tuesday</div>
+                <div class="content-row weather">
+                    <span class="weather-temp">9°</span>
+                    <span class="weather-desc">overcast clouds</span>
+                </div>
+                <div class="content-row icon">icon</div>
+            </div>
+            <div class="content-row day">
+                <div class="content-row name">Friday</div>
+                <div class="content-row weather">
+                    <span class="weather-temp">9°</span>
+                    <span class="weather-desc">overcast clouds</span>
+                </div>
+                <div class="content-row icon">icon</div>
+            </div>
+            <div class="content-row day">
+                <div class="content-row name">Saturday</div>
+                <div class="content-row weather">
+                    <span class="weather-temp">9°</span>
+                    <span class="weather-desc">overcast clouds</span>
+                </div>
+                <div class="content-row icon">icon</div>
+            </div>
+            <div class="content-row day">
+                <div class="content-row name">Sunday</div>
+                <div class="content-row weather">
+                    <span class="weather-temp">9°</span>
+                    <span class="weather-desc">overcast clouds</span>
+                </div>
+                <div class="content-row icon">icon</div>
+            </div>
+        </div>
+        <script>
+            document.querySelectorAll(".accordeon").forEach((elem) => {
+                elem.addEventListener("click", function() {
+                    elem.classList.toggle('active');
+                    let content = elem.nextElementSibling;
+                    
+
+                    if (content.style.maxHeight) {
+                        content.style.maxHeight = null;
+                        // document
+                        //     .querySelectorAll(".content")
+                        //     .forEach((elem) => (elem.style.maxHeight = null));
+                    } else {
+                        
+                        // document
+                        //     .querySelectorAll(".content")
+                        //     .forEach((elem) => (elem.style.maxHeight = null));
+                        content.style.maxHeight = content.scrollHeight + "px";
+                    }
+                });
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <link rel="preload" as="font" type="font/woff2" crossorigin href="./fonts/Roboto-Bold.woff2">
+        <link rel="preload" as="font" type="font/woff2" crossorigin href="./fonts/Roboto-Regular.woff2">
+        <link rel="stylesheet" href="./styles/styles.css" />
+        <link rel="stylesheet" href="./styles/normalize.css" />
+        <script type="module" src="./js/script.js"></script>
+
+        <title>OpenWeather API</title>
+
+        <style type="text/css">
+            @font-face {
+                font-family: Roboto;
+                font-weight: 400;
+                font-style: normal;
+                src: local("Roboto"), local(Roboto),
+                    url(./fonts/Roboto-Regular.woff2) format("woff2");
+            }
+            @font-face {
+                font-family: Roboto;
+                font-weight: 700;
+                font-style: normal;
+                src: local("Roboto-Bold"), local(Roboto-Bold),
+                    url(./fonts/Roboto-Bold.woff2) format("woff2");
+            }
+
+            * {
+                box-sizing: border-box;
+            }
+
+            body {
+                margin: 0;
+                background-color: #000;
+                font-family: Roboto, sans-serif;
+            }
+
+            .preloader {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                height: 100vh;
+                background-color: #000000ee;
+                z-index: 1000;
+                position: fixed;
+                top: 0;
+            }
+
+            .preloader #circle {
+                animation: loading 2s linear infinite;
+            }
+
+            @keyframes loading {
+                0% {
+                    transform: rotate(0deg);
+                }
+                25% {
+                    transform: rotate(90deg);
+                }
+                50% {
+                    transform: rotate(180deg);
+                }
+                75% {
+                    transform: rotate(270deg);
+                }
+                100% {
+                    transform: rotate(360deg);
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="main">
+            <div class="box">
+                <div class="header">
+                    <h1>OpenWeather API</h1>
+                </div>
+                <div class="table-body">
+                    <div class="button-box">
+                        <div class="row-item">
+                            <button class="tempButton">C°</button>
+                            <button class="tempButton">F°</button>
+                        </div>
+                        <div class="row-item pressure">Pressure</div>
+                        <div class="row-item wind">Wind</div>
+                        <div class="row-item suntime">Sunrise/sunset</div>
+                    </div>
+                    <div class="accordion">
+                        <div class="table-row" id="row-geo">
+                            <!-- data from scripts -->
+                        </div>
+                    </div>
+                    <div class="content">
+                        <div class="content-row day">
+                            <div class="content-item name-day">Monday</div>
+                            <div class="content-item weather">
+                                <span class="weather-temp">4°</span>
+                                <span class="weather-desc"
+                                    >overcast clouds</span
+                                >
+                            </div>
+                            <div class="content-item icon">icon</div>
+                            <div class="content-item pressure">Pressure</div>
+                            <div class="content-item wind">Wind</div>
+                            <div class="content-item suntime">
+                                Sunrise/sunset
+                            </div>
+                        </div>
+                        <div class="content-row day">
+                            <div class="content-item name-day">Thirthday</div>
+                            <div class="content-item weather">
+                                <span class="weather-temp">4°</span>
+                                <span class="weather-desc"
+                                    >overcast clouds</span
+                                >
+                            </div>
+                            <div class="content-item icon">icon</div>
+                            <div class="content-item pressure">Pressure</div>
+                            <div class="content-item wind">Wind</div>
+                            <div class="content-item suntime">
+                                Sunrise/sunset
+                            </div>
+                        </div>
+                        <div class="content-row day">
+                            <div class="content-item name-day">Wednesday</div>
+                            <div class="content-item weather">
+                                <span class="weather-temp">4°</span>
+                                <span class="weather-desc"
+                                    >overcast clouds</span
+                                >
+                            </div>
+                            <div class="content-item icon">icon</div>
+                            <div class="content-item pressure">Pressure</div>
+                            <div class="content-item wind">Wind</div>
+                            <div class="content-item suntime">
+                                Sunrise/sunset
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion">
+                        <div class="table-row" id="row-kyiv"></div>
+                    </div>
+                    <div class="content">
+                        <div class="content-row day">
+                            <div class="content-item name-day">Monday</div>
+                            <div class="content-item weather">
+                                <span class="weather-temp">4°</span>
+                                <span class="weather-desc"
+                                    >overcast clouds</span
+                                >
+                            </div>
+                            <div class="content-item icon">icon</div>
+                            <div class="content-item pressure">Pressure</div>
+                            <div class="content-item wind">Wind</div>
+                            <div class="content-item suntime">
+                                Sunrise/sunset
+                            </div>
+                        </div>
+                        <div class="content-row day">
+                            <div class="content-item name-day">Thirthday</div>
+                            <div class="content-item weather">
+                                <span class="weather-temp">4°</span>
+                                <span class="weather-desc"
+                                    >overcast clouds</span
+                                >
+                            </div>
+                            <div class="content-item icon">icon</div>
+                            <div class="content-item pressure">Pressure</div>
+                            <div class="content-item wind">Wind</div>
+                            <div class="content-item suntime">
+                                Sunrise/sunset
+                            </div>
+                        </div>
+                        <div class="content-row day">
+                            <div class="content-item name-day">Wednesday</div>
+                            <div class="content-item weather">
+                                <span class="weather-temp">4°</span>
+                                <span class="weather-desc"
+                                    >overcast clouds</span
+                                >
+                            </div>
+                            <div class="content-item icon">icon</div>
+                            <div class="content-item pressure">Pressure</div>
+                            <div class="content-item wind">Wind</div>
+                            <div class="content-item suntime">
+                                Sunrise/sunset
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion">
+                        <div class="table-row" id="row-london"></div>
+                    </div>
+                    <div class="content">
+                        <div class="content-row day">
+                            <div class="content-item name-day">Monday</div>
+                            <div class="content-item weather">
+                                <span class="weather-temp">4°</span>
+                                <span class="weather-desc"
+                                    >overcast clouds</span
+                                >
+                            </div>
+                            <div class="content-item icon">icon</div>
+                            <div class="content-item pressure">Pressure</div>
+                            <div class="content-item wind">Wind</div>
+                            <div class="content-item suntime">
+                                Sunrise/sunset
+                            </div>
+                        </div>
+                        <div class="content-row day">
+                            <div class="content-item name-day">Thirthday</div>
+                            <div class="content-item weather">
+                                <span class="weather-temp">4°</span>
+                                <span class="weather-desc"
+                                    >overcast clouds</span
+                                >
+                            </div>
+                            <div class="content-item icon">icon</div>
+                            <div class="content-item pressure">Pressure</div>
+                            <div class="content-item wind">Wind</div>
+                            <div class="content-item suntime">
+                                Sunrise/sunset
+                            </div>
+                        </div>
+                        <div class="content-row day">
+                            <div class="content-item name-day">Wednesday</div>
+                            <div class="content-item weather">
+                                <span class="weather-temp">4°</span>
+                                <span class="weather-desc"
+                                    >overcast clouds</span
+                                >
+                            </div>
+                            <div class="content-item icon">icon</div>
+                            <div class="content-item pressure">Pressure</div>
+                            <div class="content-item wind">Wind</div>
+                            <div class="content-item suntime">
+                                Sunrise/sunset
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion">
+                        <div class="table-row" id="row-jerusalem"></div>
+                    </div>
+                    <div class="content">
+                        <div class="content-row day">
+                            <div class="content-item name-day">Monday</div>
+                            <div class="content-item weather">
+                                <span class="weather-temp">4°</span>
+                                <span class="weather-desc"
+                                    >overcast clouds</span
+                                >
+                            </div>
+                            <div class="content-item icon">icon</div>
+                            <div class="content-item pressure">Pressure</div>
+                            <div class="content-item wind">Wind</div>
+                            <div class="content-item suntime">
+                                Sunrise/sunset
+                            </div>
+                        </div>
+                        <div class="content-row day">
+                            <div class="content-item name-day">Thirthday</div>
+                            <div class="content-item weather">
+                                <span class="weather-temp">4°</span>
+                                <span class="weather-desc"
+                                    >overcast clouds</span
+                                >
+                            </div>
+                            <div class="content-item icon">icon</div>
+                            <div class="content-item pressure">Pressure</div>
+                            <div class="content-item wind">Wind</div>
+                            <div class="content-item suntime">
+                                Sunrise/sunset
+                            </div>
+                        </div>
+                        <div class="content-row day">
+                            <div class="content-item name-day">Wednesday</div>
+                            <div class="content-item weather">
+                                <span class="weather-temp">4°</span>
+                                <span class="weather-desc"
+                                    >overcast clouds</span
+                                >
+                            </div>
+                            <div class="content-item icon">icon</div>
+                            <div class="content-item pressure">Pressure</div>
+                            <div class="content-item wind">Wind</div>
+                            <div class="content-item suntime">
+                                Sunrise/sunset
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+                <div class="preloader" id="preloader">
+            <svg
+                id="circle"
+                xmlns="http://www.w3.org/2000/svg"
+                width="64px"
+                height="64px"
+                viewBox="0 0 100 100"
+                preserveAspectRatio="xMidYMid"
+            >
+                <circle
+                    cx="50"
+                    cy="50"
+                    r="32"
+                    stroke-width="8"
+                    stroke="#E0E0E0"
+                    stroke-dasharray="50.26548245743669 50.26548245743669"
+                    fill="none"
+                    stroke-linecap="round"
+                ></circle>
+            </svg>
+        </div>
+    </body>
+</html>

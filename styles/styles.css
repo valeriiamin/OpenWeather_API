@@ -1,0 +1,125 @@
+html{
+    overflow-y: scroll;
+}
+
+.main{
+    color: #fff;
+    display: flex;
+    justify-content: center;
+}
+
+.box{
+    margin: 20px auto;
+    background-color: rgb(27, 34, 60);
+    max-width: 70%;
+    min-width: 850px;
+}
+
+.header{
+    background-color: rgb(116, 106, 106);
+    padding: 4px;
+}
+
+.header h1{
+    margin: 0;
+    text-align: center;
+}
+
+.table-body{
+    display: flex;
+    flex-direction: column;
+    flex-basis: 40%;    
+}
+
+/* .button-box{
+    display: flex;
+    flex-direction: row;
+} */
+
+.table-row{
+    flex-grow: 3;
+
+}
+
+.table-row, .content-row, .button-box {
+    display: flex;
+    justify-content: space-around;
+    min-height: 50px;
+    padding: 6px 0;
+}
+
+.row-item, .content-item  {
+    flex: 1 1 150%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* padding: 4px; */
+}
+
+.accordion{
+    display: flex;
+    flex-direction: row;
+    transition: 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+
+
+.tempButton{
+    margin: 3px;
+    background-color: whitesmoke;
+    border-radius: 3px;
+}
+
+/* .table-row, .content-row, .button-box{
+    flex: 1 1 150%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px;
+} */
+
+.content {
+    display: flex;
+    flex-direction: column;
+    max-height: 0;
+    overflow: hidden;
+    transition: 0.3s ease-in-out;
+}
+
+.active, .accordion:hover{
+    background-color: rgb(51, 65, 116);
+}
+
+.accordion:after{
+    display: flex;
+    content: '🔻';
+    transition: 0.3s;
+    font-size: 10px;
+    flex-grow: 1/3;
+    align-items: center;
+}
+
+.active:after{
+    content: '🔺';
+    transition: 0.3s;
+}
+
+
+.weather {
+    display: flex;
+    flex-direction: column;
+    font-size: 12px;
+}
+
+
+
+.name {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.name-day{
+    font-size: 18px;
+    font-weight: 400;
+}
