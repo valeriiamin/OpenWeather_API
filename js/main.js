@@ -5,6 +5,7 @@
 // загрузка для Нью-Йорка
 // при нажатии на город - запрос данных на 5 дней https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=7db757d57fb1bb5643015749b12656e1
 
+import { ContentSwitcher } from './contentSwitcher.js';
 import {getGeoData, getGeoForecast} from './async.js';
 import getKyivData from './kyiv.js';
 import getLondonData from './london.js';
@@ -12,9 +13,14 @@ import getJerusalemData from './jerusalem.js';
 // import getGeoForecast from './async.js';
 // import setGeoData from './helper.js';
 
+const contentSwitcher = new ContentSwitcher
+
 window.addEventListener("load", () => {
+
+    contentSwitcher.showContent()
+    contentSwitcher.disablePreloader()
     // getGeoData();
-    getGeoForecast();
+    // getGeoForecast();
     // getKyivData();
     // getLondonData();
     // getJerusalemData();

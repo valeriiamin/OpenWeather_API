@@ -1,3 +1,6 @@
+export const getElem = selector => document.querySelector(selector);
+
+
 // import getGeoData from "./async.js";
 
 

@@ -12,6 +12,7 @@ export const getGeoData = async function () {
 
     const { name, main: { temp, pressure }, wind: { speed, deg }, weather: [{ description, icon }], sys: { sunrise, sunset }} = geocodingData;
 
+    
     const sunriseTime = await convertTime(sunrise);
     const sunsetTime = await convertTime(sunset);
     // console.log(sunriseTime);
@@ -20,17 +21,17 @@ export const getGeoData = async function () {
     const tempF = Math.round(1.8 * (temp - 273) + 32);
 
     const insertRow = document.querySelector("#row-geo");
-    insertRow.innerHTML = `
+    insertRow.insertAdjacentHTML('beforeend', `
     <div class="row-item name">${name}</div>
     <div class="row-item weather">
         <span class="weather-temp">${tempC}°C / ${tempF}°F</span>
         <span class="weather-desc">${description}</span>
     </div>
-    <div class="row-item icon">${icon}</div>
+    <div class="row-item icon"><img src="http://openweathermap.org/img/wn/${icon}@2x.png" /></div>
     <div class="row-item pressure">${pressure} hPa</div>
     <div class="row-item wind">${speed} m/s ${deg} deg</div>
     <div class="row-item suntime">${sunriseTime}/${sunsetTime}</div>
-    `;
+    `);
 
     return geocodingData;
 };
