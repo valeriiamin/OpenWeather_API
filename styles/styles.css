@@ -31,11 +31,6 @@ html{
     flex-basis: 40%;    
 }
 
-/* .button-box{
-    display: flex;
-    flex-direction: row;
-} */
-
 .table-row{
     flex-grow: 3;
 
@@ -70,14 +65,14 @@ html{
     background-color: whitesmoke;
     border-radius: 3px;
 }
-
-/* .table-row, .content-row, .button-box{
-    flex: 1 1 150%;
+/* .table-row, .content-row, */
+ .button-box{
+    /* flex: 1 1 50px; */
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-end;
     align-items: center;
     padding: 10px;
-} */
+}
 
 .content {
     display: flex;
