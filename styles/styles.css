@@ -36,12 +36,49 @@ html{
 
 }
 
+
 .table-row, .content-row, .button-box {
     display: flex;
     justify-content: space-around;
     min-height: 50px;
     padding: 6px 0;
 }
+
+.button-box{
+    /* flex: 1 1 50px; */
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 10px;
+}
+
+.tempButton{
+    margin: 3px;
+    background-color: white;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    color: rgb(27, 34, 60);
+    border: none;
+    cursor: pointer;
+}
+
+/* #tempC, #tempF {
+    background-color: white;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    color: rgb(27, 34, 60);
+    border: none;
+    cursor: pointer;
+} */
+
+.active {
+    background-color: rgb(80, 102, 183);
+    color: white;
+    transition: .2s;
+}
+
 
 .row-item, .content-item  {
     flex: 1 1 150%;
@@ -58,21 +95,8 @@ html{
     cursor: pointer;
 }
 
-
-
-.tempButton{
-    margin: 3px;
-    background-color: whitesmoke;
-    border-radius: 3px;
-}
 /* .table-row, .content-row, */
- .button-box{
-    /* flex: 1 1 50px; */
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    padding: 10px;
-}
+
 
 .content {
     display: flex;
@@ -82,7 +106,7 @@ html{
     transition: 0.3s ease-in-out;
 }
 
-.active, .accordion:hover{
+.active-accordion, .accordion:hover{
     background-color: rgb(51, 65, 116);
 }
 
@@ -95,7 +119,7 @@ html{
     align-items: center;
 }
 
-.active:after{
+.active-accordion:after{
     content: '🔺';
     transition: 0.3s;
 }
