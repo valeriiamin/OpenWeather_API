@@ -5,8 +5,20 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-        <link rel="preload" as="font" type="font/woff2" crossorigin href="./fonts/Roboto-Bold.woff2">
-        <link rel="preload" as="font" type="font/woff2" crossorigin href="./fonts/Roboto-Regular.woff2">
+        <link
+            rel="preload"
+            as="font"
+            type="font/woff2"
+            crossorigin
+            href="./fonts/Roboto-Bold.woff2"
+        />
+        <link
+            rel="preload"
+            as="font"
+            type="font/woff2"
+            crossorigin
+            href="./fonts/Roboto-Regular.woff2"
+        />
         <link rel="stylesheet" href="./styles/styles.css" />
         <link rel="stylesheet" href="./styles/normalize.css" />
         <script type="module" src="./js/main.js"></script>
@@ -80,19 +92,23 @@
                 <div class="header">
                     <h1>OpenWeather API</h1>
                 </div>
-                <div class="table-body">
-                    
-                    <div class="button-box">
-                        <div class="row-item"></div>
+                <div class="button-box">
+                    <div class="box-item"></div>
+                    <div class="box-item"></div>
+                    <div class="box-item">
                         <div class="row-item button">
                             <button class="tempButton" id="tempC">C°</button>
                             <button class="tempButton" id="tempF">F°</button>
                         </div>
-                        <div class="row-item"></div>
-                        <div class="row-item pressure">Pressure</div>
-                        <div class="row-item wind">Wind</div>
-                        <div class="row-item suntime">Sunrise/sunset</div>
                     </div>
+                    <div class="box-item"></div>
+                    <div class="box-item desc">
+                        <div class="row-item desc">Pressure</div>
+                        <div class="row-item desc">Wind</div>
+                        <div class="row-item desc">Sunrise/sunset</div>
+                    </div>
+                </div>
+                <div class="table-body">
                     <div class="accordion">
                         <div class="table-row" id="row-geo">
                             <!-- data from scripts -->
@@ -304,7 +320,7 @@
                 </div>
             </div>
         </div>
-                <div class="preloader" id="preloader">
+        <div class="preloader" id="preloader">
             <svg
                 id="circle"
                 xmlns="http://www.w3.org/2000/svg"

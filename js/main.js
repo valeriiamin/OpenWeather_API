@@ -1,9 +1,6 @@
 // https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}
 
 window.addEventListener("load", () => {
-    // const content = document.querySelector('.content')
-    // const preloader = document.querySelector('.preloader')
-
     contentSwitcher();
     getGeoposition();
 
@@ -11,6 +8,7 @@ window.addEventListener("load", () => {
     document.querySelectorAll(".accordion").forEach((elem) => {
         elem.addEventListener("click", function () {
             elem.classList.toggle("active-accordion");
+            document.querySelector(".rotate").classList.toggle("rotate-after");
             let content = elem.nextElementSibling;
 
             if (content.style.maxHeight) {
@@ -65,15 +63,15 @@ function showWeather(data) {
     let sunset = new Date(data.sys.sunset * 1000).toLocaleTimeString();
     row.insertAdjacentHTML(
         "beforeend",
-        `<div class="row-item name">${data.name}</div>
-    <div class="row-item weather">
-        <span class="weather-temp">${temp}°C</span>
-        <span class="weather-desc">${data.weather[0].description}</span>
-    </div>
-    <div class="row-item icon"><img src="http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png" /></div>
-    <div class="row-item pressure">${data.main.pressure} hPa</div>
-    <div class="row-item wind">${data.wind.speed} m/s ${data.wind.deg} deg</div>
-    <div class="row-item suntime">${sunrise}/${sunset}</div>`
+        `<div class="row-item triangle">
+        <div class="rotate"></div></div>
+        <div class="row-item name">${data.name}</div>
+        <div class="row-item weather"><div class="temp">${temp}°C</div><span class="weather-desc">${data.weather[0].description}</span></div>
+        <div class="row-item"><img src="http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png" class="icon"/></div>
+        <div class="row-item pressure">${data.main.pressure} hPa</div>
+        <div class="row-item wind">${data.wind.speed} m/s </ br> ${data.wind.deg} deg</div>
+        <div class="row-item suntime">${sunrise}/</br>${sunset}</div>
+    `
     );
 
     const tempBtn = document.querySelector(".button");
@@ -85,7 +83,7 @@ function showWeather(data) {
             tempF.classList.remove("active");
             tempC.classList.add("active");
 
-            const array_temp = document.querySelectorAll(".weather-temp");
+            const array_temp = document.querySelectorAll(".temp");
             array_temp.forEach((item) => {
                 item.innerHTML = "";
                 item.innerHTML = `${temp}°C`;
@@ -97,7 +95,7 @@ function showWeather(data) {
             tempF.classList.add("active");
 
             let fahrenheit = Math.round(switchToFahrenheit(temp));
-            const array_temp = document.querySelectorAll(".weather-temp");
+            const array_temp = document.querySelectorAll(".temp");
             array_temp.forEach((item) => {
                 item.innerHTML = "";
                 item.innerHTML = `${fahrenheit}°F`;
