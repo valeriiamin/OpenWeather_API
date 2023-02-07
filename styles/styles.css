@@ -38,6 +38,7 @@ html{
 
 .table-row, .content-row {
     display: flex;
+    flex-direction: row;
     justify-content: space-around;
     min-height: 50px;
     padding: 6px 0;
