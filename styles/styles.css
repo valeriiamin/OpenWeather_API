@@ -31,7 +31,7 @@ html{
     flex-basis: 30%;    
 }
 
-.table-row{
+.table-row, .content-row{
     flex-grow: 1;
 }
 
@@ -73,6 +73,11 @@ html{
     transition: .2s;
 }
 
+.content-row{
+    margin-left: 50px;
+    height: 50px;
+}
+
 
 .row-item, .content-item  {
     flex: 1 1 150px;
@@ -108,17 +113,18 @@ html{
 .accordion{
     display: flex;
     flex-direction: row;
-    transition: 0.3s ease-in-out;
+    transition: 0.5s ease-in-out;
     cursor: pointer;
 }
 
 .content {
-    display: flex;
+    display: none;
     flex-direction: column;
-    max-height: 0;
+    /* max-height: 0 px; */
     overflow: hidden;
-    transition: 0.3s ease-in;
+    transition: 0.5s ease-in-out;
 }
+
 
 .active-accordion, .accordion:hover{
     background-color: rgb(51, 65, 116);
@@ -166,19 +172,25 @@ html{
 .name {
     font-size: 24px;
     font-weight: 700;
+    text-align: center;
 }
 
-.temp{
+
+
+.temp, .temp-icon{
     font-size: 20px;
+}
+
+.temp-weather{
+    display: flex;
 }
 
 .weather-desc{
     max-height: 20px;
 }
 
-.name-day{
-    font-size: 18px;
-    font-weight: 400;
+.day{
+text-align: center;
 }
 
 .icon{
