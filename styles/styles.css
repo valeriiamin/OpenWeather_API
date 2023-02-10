@@ -1,42 +1,43 @@
-html{
+html {
     overflow-y: scroll;
 }
 
-.main{
+.main {
     color: #fff;
     display: flex;
     justify-content: center;
 }
 
-.box{
+.box {
     margin: 20px auto;
-    background-color: rgb(27, 34, 60, 0.87);
+    background-color: rgba(20, 127, 220, 0.909);
     max-width: 70%;
     min-width: 850px;
 }
 
-.header{
-    background-color: rgb(116, 106, 106);
+.header {
+    background-color: #00398865;
     padding: 4px;
 }
 
-.header h1{
+.header h1 {
     margin: 0;
     text-align: center;
 }
 
-.table-body{
+.table-body {
     display: flex;
     flex-direction: column;
-    flex-basis: 30%;    
+    flex-basis: 30%;
 }
 
-.table-row, .content-row{
+.table-row,
+.content-row {
     flex-grow: 1;
 }
 
-
-.table-row, .content-row {
+.table-row,
+.content-row {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -44,9 +45,7 @@ html{
     padding: 6px 0;
 }
 
-
-
-.tempButton{
+.tempButton {
     margin: 3px;
     background-color: white;
     width: 35px;
@@ -57,60 +56,48 @@ html{
     cursor: pointer;
 }
 
-/* #tempC, #tempF {
-    background-color: white;
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
-    color: rgb(27, 34, 60);
-    border: none;
-    cursor: pointer;
-} */
-
 .active {
-    background-color: rgb(80, 102, 183);
+    background-color: rgb(60, 174, 255);
     color: white;
-    transition: .2s;
+    transition: 0.2s;
 }
 
-.content-row{
+.content-row {
     margin-left: 50px;
     height: 50px;
 }
 
-
-.row-item, .content-item  {
+.row-item,
+.content-item {
     flex: 1 1 150px;
     display: flex;
     justify-content: center;
     align-items: center;
-
 }
 
-.button-box{
+.button-box {
     display: flex;
     flex-direction: row;
-    
 }
 
-.box-item{
+.box-item {
     flex-grow: 1;
 }
 
-.box-item:nth-child(3){
+.box-item:nth-child(3) {
     flex-grow: 4;
 }
 
-.box-item:nth-child(5){
+.box-item:nth-child(5) {
     flex-grow: 3.75;
-} 
+}
 
-.desc{
+.desc {
     display: flex;
     flex-direction: row;
-} 
+}
 
-.accordion{
+.accordion {
     display: flex;
     flex-direction: row;
     transition: 0.5s ease-in-out;
@@ -120,21 +107,20 @@ html{
 .content {
     display: none;
     flex-direction: column;
-    /* max-height: 0 px; */
     overflow: hidden;
     transition: 0.5s ease-in-out;
 }
 
-
-.active-accordion, .accordion:hover{
-    background-color: rgb(51, 65, 116);
+.active-accordion,
+.accordion:hover {
+    background-color: rgba(60, 174, 255, 0.434);
 }
 
-.triangle{    
+.triangle {
     max-width: 50px;
 }
 
-.rotate{
+.rotate {
     border: solid white;
     border-width: 0 3px 3px 0;
     display: inline-block;
@@ -142,7 +128,7 @@ html{
     transform: rotate(45deg);
     transition: 0.3s;
 }
-.accordion:after{
+.accordion:after {
     display: flex;
     transition: 0.3s;
     font-size: 10px;
@@ -150,16 +136,10 @@ html{
     align-items: center;
 }
 
-.rotate-after{
+.rotate-after {
     transform: rotate(-135deg);
     transition: 0.3s;
 }
-
-/* .active-accordion:after{
-    content: '🔺';
-    transition: 0.3s;
-} */
-
 
 .weather {
     display: flex;
@@ -167,34 +147,34 @@ html{
     font-size: 12px;
 }
 
-
-
 .name {
     font-size: 24px;
     font-weight: 700;
     text-align: center;
 }
 
-
-
-.temp, .temp-icon{
+.temp,
+.temp-icon {
     font-size: 20px;
 }
 
-.temp-weather{
+.temp-weather {
     display: flex;
 }
 
-.weather-desc{
+.weather-desc {
     max-height: 20px;
 }
 
-.day{
-text-align: center;
+.day {
+    text-align: center;
 }
 
-.icon{
+.icon {
     max-width: 80px;
     max-height: 80px;
 }
 
+.wind {
+    text-align: center;
+}

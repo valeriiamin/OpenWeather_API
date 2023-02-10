@@ -6,6 +6,7 @@
 // https://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}
 // https://api.openweathermap.org/data/2.5/forecast?q={city name}&appid={API key}
 // new api key = 5c57e88f04fb9a8c3d02b6c0264127ab
+
 const metricUnits = "metric";
 const imperialUnits = "imperial";
 
@@ -24,9 +25,7 @@ const idNY = 5128638;
 const tempBtn = document.querySelector(".button");
 let tempC = document.querySelector("#tempC");
 let tempF = document.querySelector("#tempF");
-let flag = false; //clear content to 2d time
 
-const contentArray = document.querySelectorAll(".content");
 const accordionArray = document.querySelectorAll(".accordion");
 
 tempBtn.addEventListener("click", clickTempButton);
@@ -36,186 +35,91 @@ accordionArray.forEach((item) =>
     item.addEventListener("click", displayAccordion)
 );
 
-async function displayAccordion(item) {
+async function displayAccordion(e) {
     try {
-        const parentNode = item.target.parentNode;
-        const parentAccordion = parentNode.parentNode;
-        const content = parentAccordion.nextElementSibling;
-        const triangleDiv = item.target.previousElementSibling;
-        const arrow = triangleDiv.firstChild;
+        if (e.target.classList.contains("name")) {
+            const rowItem = e.target.parentElement;
+            const tableRow = rowItem.parentElement;
+            const accordion = tableRow.parentElement;
+            const content = accordion.nextElementSibling;
+            const triangle = tableRow.firstElementChild;
+            const arrow = triangle.firstElementChild;
 
-        if (content.style.display === "flex") {
-            // content.classList.remove("content-active");
-            content.style.display = "none";
-            // content.style.maxHeight = null;
+            if (content.style.display === "flex") {
+                content.style.display = "none";
+                accordion.classList.remove("active-accordion");
+                e.target.classList.remove("name-active");
+                arrow.classList.remove("rotate-after");
+            } else {
+                content.style.display = "flex";
+                e.target.classList.add("name-active");
+                accordion.classList.add("active-accordion");
+                arrow.classList.add("rotate-after");
 
-            parentAccordion.classList.remove("active-accordion");
-            item.target.classList.remove("name-active");
-            arrow.nextElementSibling.classList.remove("rotate-after");
-        } else {
-            content.style.display = "flex";
-            // content.style.maxHeight = content.scrollHeight + "px";
-            // content.classList.add("content-active");
-            // console.log(content.scrollHeight)
-            item.target.classList.add("name-active");
-            parentAccordion.classList.add("active-accordion");
-
-            arrow.nextElementSibling.classList.add("rotate-after");
-
-            //get hourly forecast and display it in content box
-            const hourlyWeather = await getHourlyData(
-                item.target.innerHTML,
-                metricUnits
-            );
-            hourlyWeather.forEach((obj) => displayHourlyData(content, obj));
+                //get hourly forecast and display it in content box
+                const hourlyWeather = await getHourlyData(
+                    e.target.innerHTML,
+                    metricUnits
+                );
+                hourlyWeather.forEach((obj) => displayHourlyData(content, obj));
+            }
         }
     } catch (e) {
         console.error(e);
     }
 }
 
-// const tableBody = document.querySelector("#tableBody");
-// tableBody.addEventListener("click", async (e) => {
-//     // console.log(e.target);
-//     if (e.target.classList.contains("name")) {
-//         e.target.classList.add('name-active')
-
-//         const elem = e.target.closest(".accordion");
-//         elem.classList.toggle("active-accordion");
-
-//         const content = elem.nextElementSibling;
-//         const dataName = e.target.textContent;
-
-//         if (elem.classList.contains("active-accordion")) {
-//             // e.target.classList.toggle("name-active");
-//             content.classList.toggle("content-active");
-//             // content.innerHTML = ''
-//             const hourlyWeather = await getHourlyData(dataName, metricUnits);
-//             hourlyWeather.forEach((obj) => displayHourlyData(content, obj));
-//         }
-
-//         const arrayTriangle = document.querySelectorAll(".rotate");
-//         arrayTriangle.forEach((item) => {
-//             if (elem.contains(item)) {
-//                 item.classList.toggle("rotate-after");
-
-//                 if (content.style.maxHeight) {
-//                     content.style.maxHeight = null;
-//                     content.classList.toggle('content-active')
-//                     e.target.classList.toggle('name-active')
-//                 } else {
-//                     content.style.maxHeight = content.scrollHeight + "px";
-//                 }
-//             }
-//         });
-//     }
-// });
-
 async function clickTempButton(e) {
     try {
-        const accordionActive = document.querySelectorAll(".active-accordion");
-        accordionActive.forEach(async (item) => {
-            const tableRow = item.firstElementChild; //table-row
-            const triangle = tableRow.firstElementChild; // triangle
-            const nameCity = triangle.nextElementSibling; //name city
-            const content = item.nextElementSibling; //content
-            // let flag = false //flag for clear content in 2d time
-            // console.log(content)
+        if (e.target.innerHTML == "C°") {
+            tempF.classList.remove("active");
+            tempC.classList.add("active");
 
-            if (e.target.innerHTML == "C°") {
-                tempF.classList.remove("active");
-                tempC.classList.add("active");
+            await getWeatherData(metricUnits);
 
-                await getWeatherData(metricUnits);
+            const accordionActive =
+                document.querySelectorAll(".active-accordion");
+            accordionActive.forEach(async (item) => {
+                const tableRow = item.firstElementChild; //table-row
+                const triangle = tableRow.firstElementChild; // triangle
+                const rowItem = triangle.nextElementSibling; //row item
+                const nameCity = rowItem.firstElementChild; //name city
+                const content = item.nextElementSibling; //content
 
-                
                 const hourlyWeather = await getHourlyData(
                     nameCity.innerHTML,
                     metricUnits
                 );
 
-                content.innerHTML = ''
-                hourlyWeather.forEach((obj) =>
-                    displayHourlyData(content, obj)
-                );
-            }
-            if (e.target.innerHTML == "F°") {
-                tempC.classList.remove("active");
-                tempF.classList.add("active");
+                content.innerHTML = "";
+                hourlyWeather.forEach((obj) => displayHourlyData(content, obj));
+            });
+        }
 
-                await getWeatherData(imperialUnits);
-                
+        if (e.target.innerHTML == "F°") {
+            tempC.classList.remove("active");
+            tempF.classList.add("active");
+
+            await getWeatherData(imperialUnits);
+
+            const accordionActive =
+                document.querySelectorAll(".active-accordion");
+            accordionActive.forEach(async (item) => {
+                const tableRow = item.firstElementChild; //table-row
+                const triangle = tableRow.firstElementChild; // triangle
+                const rowItem = triangle.nextElementSibling; //row item
+                const nameCity = rowItem.firstElementChild; //name city
+                const content = item.nextElementSibling; //content
+
                 const hourlyWeather = await getHourlyData(
                     nameCity.innerHTML,
                     imperialUnits
                 );
 
-                content.innerHTML = ''
-                hourlyWeather.forEach((obj) =>
-                    displayHourlyData(content, obj)
-                );
-            }
-        });
-
-        // const nameArray = document.querySelectorAll(".name-active");
-        // const contentArray = document.querySelectorAll(".content-active");
-
-        // nameArray.forEach((item, i) => {
-        //     const nameCity = item.innerHTML;
-        //     // contentArray[i].innerHTML = ''
-        //     console.log(nameCity);
-
-        // const hourlyWeather = await getHourlyData(
-        //     nameCity,
-        //     metricUnits
-        // );
-        // hourlyWeather.forEach((obj) =>
-        //     displayHourlyData(contentArray[i], obj)
-        // );
-
-        // accordionArray.forEach((item, i)=> {
-        //     if(item.classList.contains('active-accordion')){
-
-        //         const tableRow = item.parentNode;
-
-        //         const cityName = tableRow.childNodes[i];
-        //         console.log(cityName)
-        //     }
-        // })
-
-        // const nameArray = document.querySelectorAll(".name-active");
-        // const contentArray = document.querySelectorAll(".content-active");
-        // nameArray.forEach(async (item, i) => {
-        //     const nameCity = item.innerHTML;
-        //     contentArray[i].innerHTML = "";
-        //     console.log(nameCity);
-
-        //     const hourlyWeather = await getHourlyData(
-        //         nameCity,
-        //         imperialUnits
-        //     );
-        //     hourlyWeather.forEach((obj) =>
-        //         displayHourlyData(contentArray[i], obj)
-        //     );
-        // });
-
-        // getWeatherData();
-        // console.log('hello')
-
-        // const namesActiveClass = document.querySelectorAll('.name-active')
-        // namesActiveClass.forEach(async item  => {
-
-        //      // typeof item.style.maxHeight - string!!!
-        //         const activeAccordion = item.closest('.active-accordion')
-        //         const content = activeAccordion.nextElementSibling
-        //         // console.log(activeAccordion)
-
-        //          const res = await getHourlyData(item.textContent); //нужно передать имя города
-        //         content.innerHTML = ''
-        //          //  console.log(res)
-        //         res.forEach(obj => displayHourlyData(content, obj))
-
-        // })
+                content.innerHTML = "";
+                hourlyWeather.forEach((obj) => displayHourlyData(content, obj));
+            });
+        }
     } catch (e) {
         console.error(e);
     }
@@ -248,15 +152,9 @@ const getWeatherData = async function (unit) {
             "#row-ny",
         ];
 
-        const dataWeather = {};
-        selectorArray.forEach(
-            (key, i) => (dataWeather[key] = getCurrentWeather[i])
+        selectorArray.forEach((key, i) =>
+            showWeather(key, getCurrentWeather[i])
         );
-
-        for (const key in dataWeather) {
-            showWeather(key, dataWeather[key]);
-            continue;
-        }
 
         return getCurrentWeather;
     } catch (e) {
@@ -278,11 +176,7 @@ const getDataAndConvertToJSON = function (
 function showWeather(selector, data) {
     const row = document.querySelector(selector);
     row.innerHTML = "";
-    // console.log(data)
 
-    // const temp = tempF.classList.contains("active")
-    //     ? Math.round(switchCelsiusToFahrenheit(data.main.temp))
-    //     : Math.round(data.main.temp);
     const tempIcon = tempF.classList.contains("active") ? "°F" : "°C";
     const windUnit = tempF.classList.contains("active") ? "mpH" : "m/s";
 
@@ -292,8 +186,6 @@ function showWeather(selector, data) {
     row.insertAdjacentHTML(
         "beforeend",
         `
-        <div class="row-item triangle">
-                <div class="rotate"></div></div>
         <div class="row-item name">${data.name}</div>
         <div class="row-item weather">
             <div class="temp-weather">
@@ -329,14 +221,6 @@ function contentSwitcher() {
     });
 }
 
-// function switchCelsiusToFahrenheit(temp) {
-//     return (temp * 9) / 5 + 32;
-// }
-
-// function switchFahrenheitToCelsius(temp){
-//     return (temp - 32) * 5/9;
-// }
-
 const getHourlyData = async function (dataName, unit) {
     try {
         const baseUrl = "https://api.openweathermap.org/data/2.5/forecast?";
@@ -348,30 +232,6 @@ const getHourlyData = async function (dataName, unit) {
 
         const { list } = getHourlyWeather;
 
-        // const forecastList = list.map((obj) => {
-        //     if (tempC.classList.contains("active")) {
-        //         obj = {
-        //             date: obj.dt_txt,
-        //             temp: Math.round(obj.main.temp),
-        //             description: obj.weather[0].description,
-        //             icon: obj.weather[0].icon,
-        //             pressure: obj.main.pressure,
-        //             speed: obj.wind.speed,
-        //             deg: obj.wind.deg,
-        //         };
-        //     } else {
-        //         obj = {
-        //             date: obj.dt_txt,
-        //             temp: Math.round(switchCelsiusToFahrenheit(obj.main.temp)),
-        //             description: obj.weather[0].description,
-        //             icon: obj.weather[0].icon,
-        //             pressure: obj.main.pressure,
-        //             speed: obj.wind.speed,
-        //             deg: obj.wind.deg,
-        //         };
-        //     }
-        // });
-
         return list;
     } catch (e) {
         console.error(e);
@@ -379,16 +239,9 @@ const getHourlyData = async function (dataName, unit) {
 };
 
 function displayHourlyData(content, dataObject) {
-
     const tempIcon = tempF.classList.contains("active") ? "°F" : "°C";
     const windUnit = tempF.classList.contains("active") ? "mpH" : "m/s";
-    
-    
-        
-        // content.innerHTML = ""; //clear content in 2d time
-        
-    
-    
+
     const row = document.createElement("div");
     row.classList.add("content-row");
 
